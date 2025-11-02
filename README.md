@@ -79,7 +79,9 @@
 
 
 - **LottoRank (Enum - 당첨 등수)**
-    - [ ] 상세 내용 추후 추가
+    - [x] Enum 정의: 등수별 일치 개수, 보너스 일치 여부, 상금, 출력 메시지 속성
+    - [x] valueOf(matchCount, matchBonus): 주어진 조건에 맞는 등수(LottoRank 상수)를 반환.
+    - [x] Getter: 상금(getPrize()) 및 메시지(getMessage()) 반환.
 
 
 - **LottoStatistics (결과 통계)**
