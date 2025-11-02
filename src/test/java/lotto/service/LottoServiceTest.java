@@ -38,8 +38,6 @@ class LottoMachineTest {
         // then
         Lotto lotto = purchasedLottos.get(0);
         List<Integer> numbers = lotto.getNumbers();
-
-        // AssertJ의 isSorted()를 사용하여 정렬 상태를 검증
         assertThat(numbers).isSorted();
     }
 }
