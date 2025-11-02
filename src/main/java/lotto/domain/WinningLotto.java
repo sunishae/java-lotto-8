@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import lotto.util.LottoErrorMessage;
 
 public class WinningLotto {
