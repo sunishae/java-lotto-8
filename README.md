@@ -47,7 +47,7 @@
 
 
 - **LottoMachine (로또 생성 로직)**
-    - [ ]  **purchaseLottos(int purchaseAmount)**:
+    - [x]  **issueLottos(int purchaseAmount)**:
         - 구매 금액을 기반으로 로또 수량 계산
         - 수량만큼 `Lotto` 객체 생성 및 `List<Lotto>`로 반환.
 
@@ -61,8 +61,8 @@
 
 - **WinningLotto (모델 - 로또 당첨 번호)**
     - 속성: `winningNumbers` (`Lotto`), `bonusNumber` (`int`)
-    - [ ]  **WinningLotto(Lotto winningLotto, int bonusNumber)**: 당첨 번호와 보너스 번호를 인자로 받아 초기화.
-    - [ ]  **match(Lotto userLotto)**: 사용자의 로또를 받아 `LottoRank`를 반환.
+    - [x]  **WinningLotto(Lotto winningLotto, int bonusNumber)**: 당첨 번호와 보너스 번호를 인자로 받아 초기화.
+    - [x]  **match(Lotto userLotto)**: 사용자의 로또를 받아 `LottoRank`를 반환.
 
 
 - **BonusNumberValidator (보너스 번호 유효성 검사)**
