@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import lotto.util.LottoErrorMessage;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,12 +19,12 @@ class LottoTest {
         // 7개인 경우
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 정확히 6개여야 합니다.");
+                .hasMessageContaining(String.format(LottoErrorMessage.INVALID_SIZE, Lotto.LOTTO_NUMBER_SIZE));
 
         // 5개인 경우
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 정확히 6개여야 합니다.");
+                .hasMessageContaining(String.format(LottoErrorMessage.INVALID_SIZE, Lotto.LOTTO_NUMBER_SIZE));
     }
 
     @Test
@@ -31,7 +32,7 @@ class LottoTest {
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                .hasMessageContaining(LottoErrorMessage.DUPLICATE_NUMBER);
     }
 
     @ParameterizedTest
@@ -43,7 +44,7 @@ class LottoTest {
 
         assertThatThrownBy(() -> new Lotto(invalidNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining(String.format(LottoErrorMessage.INVALID_RANGE, Lotto.LOTTO_MIN_NUMBER, Lotto.LOTTO_MAX_NUMBER));
     }
 
     @Test
@@ -62,5 +63,21 @@ class LottoTest {
         // 6개 일치
         Lotto winningLottoSixMatch = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThat(userLotto.getMatchCount(winningLottoSixMatch)).isEqualTo(6);
+    }
+
+    @Test
+    @DisplayName("로또 번호에 특정 번호가 포함되어 있는지 확인한다.")
+    void 로또_번호에_특정_번호가_포함되어_있는지_확인한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.contains(6)).isTrue();
+    }
+
+    @Test
+    @DisplayName("로또 번호에 특정 번호가 포함되어 있지 않은지 확인한다.")
+    void 로또_번호에_특정_번호가_포함되어_있지_않은지_확인한다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.contains(7)).isFalse();
     }
 }

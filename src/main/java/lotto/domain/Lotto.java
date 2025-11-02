@@ -5,9 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import lotto.util.LottoErrorMessage;
+
 public class Lotto {
 
-    private static final int LOTTO_NUMBER_SIZE = 6;
+    public static final int LOTTO_NUMBER_SIZE = 6;
     public static final int LOTTO_MIN_NUMBER = 1;
     public static final int LOTTO_MAX_NUMBER = 45;
 
@@ -22,7 +24,9 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 정확히 " + LOTTO_NUMBER_SIZE + "개여야 합니다.");
+            throw new IllegalArgumentException(
+                    String.format(LottoErrorMessage.INVALID_SIZE, LOTTO_NUMBER_SIZE)
+            );
         }
     }
 
@@ -30,15 +34,16 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
 
         if (uniqueNumbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(LottoErrorMessage.DUPLICATE_NUMBER);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 "
-                        + LOTTO_MIN_NUMBER + "부터 " + LOTTO_MAX_NUMBER + " 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(
+                        String.format(LottoErrorMessage.INVALID_RANGE, LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER)
+                );
             }
         }
     }
