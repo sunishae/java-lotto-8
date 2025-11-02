@@ -54,9 +54,9 @@
 
 - **Lotto (모델 - 사용자 로또)**
     - 속성: `numbers` (`List<Integer>`, 6개)
-    - [ ]  **Lotto(List<Integer> numbers)**: 생성자 유효성 검사 (6개, 중복, 1~45 범위).
-    - [ ]  **getNumbers()**: 로또 번호 리스트 반환.
-    - [ ]  **getMatchCount(Lotto winningLotto)**: 당첨 번호와 일치하는 개수 반환.
+    - [x]  **Lotto(List<Integer> numbers)**: 생성자 유효성 검사 (6개, 중복, 1~45 범위).
+    - [x]  **getNumbers()**: 로또 번호 리스트 반환.
+    - [x]  **getMatchCount(Lotto winningLotto)**: 당첨 번호와 일치하는 개수 반환.
 
 
 - **WinningLotto (모델 - 로또 당첨 번호)**
