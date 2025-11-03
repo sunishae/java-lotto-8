@@ -73,7 +73,7 @@
 
 
 - **LottoResultCalculator (결과 계산)**
-    - [ ]  **calculate(List<Lotto> purchasedLottos, WinningLotto winningLotto)**:
+    - [x]  **calculate(List<Lotto> purchasedLottos, WinningLotto winningLotto)**:
         - 모든 구매 로또를 `winningLotto`와 비교하여 등수별 당첨 횟수를 집계.
         - `LottoStatistics` 객체 (당첨 횟수 `Map` 및 수익률)로 변환하여 반환.
 
@@ -86,6 +86,6 @@
 
 - **LottoStatistics (결과 통계)**
     - 속성: `rankCounts` (`Map<LottoRank, Integer>`), `rateOfReturn` (`double`)
-    - [ ]  **LottoStatistics()**: 총 상금과 구매 금액을 받아 수익률까지 계산하여 초기화.
-    - [ ]  **getRankCounts()**: 등수별 당첨 횟수 맵 반환.
-    - [ ]  **getRateReturn()**: 수익률 반환.
+    - [x]  **LottoStatistics()**: 총 상금과 구매 금액을 받아 수익률까지 계산하여 초기화.
+    - [x]  **getRankCounts()**: 등수별 당첨 횟수 맵 반환.
+    - [x]  **getRateReturn()**: 수익률 반환.
