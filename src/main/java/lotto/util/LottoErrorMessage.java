@@ -18,6 +18,5 @@ public class LottoErrorMessage {
     public static final String NEGATIVE_AMOUNT = "[ERROR] 구입 금액은 양수여야 합니다.";
 
     // 당첨/보너스 번호 관련 에러 메시지 (WinningNumberValidator, BonusNumberValidator)
-    public static final String WINNING_NUMBER_COUNT = "[ERROR] 당첨 번호는 6개여야 합니다.";
     public static final String BONUS_NUMBER_DUPLICATE = "[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.";
 }
