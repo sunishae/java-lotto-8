@@ -40,7 +40,7 @@
 
 
 - **PurchaseValidator (구입 금액 유효성 검사)**
-    - [ ]  **validateAndParse(String input)**:
+    - [x]  **validateAndParse(String input)**:
         - `input` 문자열에 대한 유효성 검사 및 정수형으로 변환 후 반환.
         - **숫자 형식 검사:** 숫자가 아닌 문자 포함 시 `IllegalArgumentException`.
         - **1000 단위 검사:** 1000으로 나누어 떨어지지 않거나 0 이하일 경우 `IllegalArgumentException`.
@@ -66,7 +66,7 @@
 
 
 - **BonusNumberValidator (보너스 번호 유효성 검사)**
-    - [ ]  **validateAndParse(String input, List<Integer> winningNumbers)**:
+    - [x]  **validateAndParse(String input, List<Integer> winningNumbers)**:
         - `input` 문자열을 검사하고 정수형(`int`)으로 변환 후 반환.
         - **숫자 형식 및 범위 검사:** 1~45 범위를 벗어나거나 숫자가 아닌 경우 `IllegalArgumentException`.
         - **당첨 번호 중복 검사:** 이미 `winningNumbers`에 포함된 경우 `IllegalArgumentException`.
