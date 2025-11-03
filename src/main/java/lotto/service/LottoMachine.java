@@ -10,7 +10,7 @@ import lotto.domain.Lotto;
 
 public class LottoMachine {
 
-    private static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_PRICE = 1000;
 
     public List<Lotto> issueLottos(int purchaseAmount) {
         int count = calculateLottoCount(purchaseAmount);
