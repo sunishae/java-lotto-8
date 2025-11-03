@@ -14,7 +14,7 @@
 ---
 
 - **LottoGameController (컨트롤러)**
-    - [ ]  **run()**: 게임 전체 흐름 제어 및 입력 재시도 루프 관리
+    - [x]  **run()**: 게임 전체 흐름 제어 및 입력 재시도 루프 관리
         - **구입 금액 처리**: `InputView.readPurchaseAmount()` → `PurchaseValidator.validateAndParse()`
         - **로또 발급**: `LottoMachine.issueLottos()`를 통해 `List<Lotto>` 받기.
         - **당첨 번호 처리**: `InputView.readWinningNumbers()` → `WinningNumberValidator.validateAndParse()`
@@ -24,16 +24,16 @@
 
 
 - **InputView (입력)**
-    - [ ]  **readPurchaseAmount()**: "구입금액을 입력해 주세요." 출력 후 문자열 입력받아 반환.
-    - [ ]  **readWinningNumbers()**: "당첨 번호를 입력해 주세요." 출력 후 문자열 입력받아 반환.
-    - [ ]  **readBonusNumber()**: "보너스 번호를 입력해 주세요." 출력 후 문자열 입력받아 반환.
+    - [x]  **readPurchaseAmount()**: "구입금액을 입력해 주세요." 출력 후 문자열 입력받아 반환.
+    - [x]  **readWinningNumbers()**: "당첨 번호를 입력해 주세요." 출력 후 문자열 입력받아 반환.
+    - [x]  **readBonusNumber()**: "보너스 번호를 입력해 주세요." 출력 후 문자열 입력받아 반환.
 
 
 - **OutputView (출력)**
-    - [ ]  **printLottos(int count, List<Lotto> lottos)**:
+    - [x]  **printLottos(int count, List<Lotto> lottos)**:
         - "N개를 구매했습니다." 출력.
         - 각 로또 번호를 오름차순으로 정렬하여 출력.
-    - [ ]  **printStatistics(LottoStatistics statistics)**:
+    - [x]  **printStatistics(LottoStatistics statistics)**:
         - "당첨 통계" 및 구분선(---) 출력.
         - 각 등수별 당첨 횟수를 형식에 맞춰 출력.
         - 총 수익률을 소수점 둘째 자리에서 반올림하여 백분율로 출력.
@@ -72,6 +72,11 @@
         - **당첨 번호 중복 검사:** 이미 `winningNumbers`에 포함된 경우 `IllegalArgumentException`.
 
 
+- **WinningNumberValidator (당첨 번호 유효성 검사)**
+    - [x] **validateAndParse(String input)**:
+        - `input` 문자열을 검사하고 콤마(,)를 기준으로 파싱 후 정수형(`int`)으로 변환 후 반환.
+        - **숫자 형식 및 범위 검사:** 1~45 범위를 벗어나거나 숫자가 아닌 경우 `IllegalArgumentException`.
+
 - **LottoResultCalculator (결과 계산)**
     - [x]  **calculate(List<Lotto> purchasedLottos, WinningLotto winningLotto)**:
         - 모든 구매 로또를 `winningLotto`와 비교하여 등수별 당첨 횟수를 집계.
@@ -89,3 +94,55 @@
     - [x]  **LottoStatistics()**: 총 상금과 구매 금액을 받아 수익률까지 계산하여 초기화.
     - [x]  **getRankCounts()**: 등수별 당첨 횟수 맵 반환.
     - [x]  **getRateReturn()**: 수익률 반환.
+
+
+--- 
+
+## 📁 로또 미션 최종 파일 구조
+
+```
+src
+├── main
+│   └── java
+│       └── lotto
+│           ├── Application.java                // 실행 진입점
+│           ├── controller
+│           │   └── LottoGameController.java    // 게임 흐름 제어 및 재입력 루프 관리
+│           ├── domain
+│           │   ├── Lotto.java                  // 사용자 로또 모델 (6개 번호, 유효성)
+│           │   ├── LottoRank.java              // 당첨 등수 Enum (규칙 및 상금)
+│           │   ├── LottoStatistics.java        // 최종 통계 결과 모델 (횟수, 수익률)
+│           │   └── WinningLotto.java           // 당첨 기준 모델 (당첨 번호 + 보너스 번호)
+│           ├── service
+│           │   ├── LottoMachine.java           // 로또 발행 (생성) 흐름 관리
+│           │   └── LottoResultCalculator.java  // 당첨 통계 계산 흐름 관리
+│           ├── util
+│           │   ├── BonusNumberValidator.java   // 보너스 번호 유효성 검사
+│           │   ├── LottoErrorMessage.java      // 에러 메시지 상수 관리
+│           │   ├── LottoOutputMessage.java     // 출력 메시지 상수 관리
+│           │   ├── PurchaseValidator.java      // 구입 금액 유효성 검사
+│           │   └── WinningNumberValidator.java // 당첨 번호 유효성 검사
+│           └── view
+│               ├── InputView.java              // 입력 프롬프트 출력 및 문자열 입력
+│               └── OutputView.java             // 결과 및 통계 출력 포맷팅
+└── test
+    └── java
+        └── lotto
+            ├── ApplicationTest.java
+            ├── controller
+            │   └── LottoGameControllerTest.java
+            ├── domain
+            │   ├── LottoTest.java
+            │   ├── LottoRankTest.java
+            │   ├── LottoStatisticsTest.java
+            │   └── WinningLottoTest.java
+            ├── service
+            │   ├── LottoMachineTest.java
+            │   └── LottoResultCalculatorTest.java
+            ├── util
+            │   ├── BonusNumberValidatorTest.java
+            │   ├── PurchaseValidatorTest.java
+            │   └── WinningNumberValidatorTest.java
+            └── view
+                └── OutputViewTest.java
+```
