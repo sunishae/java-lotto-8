@@ -28,12 +28,13 @@ public class LottoMachine {
     }
 
     private Lotto generateLotto() {
-        // Lotto 클래스에 정의된 상수를 사용합니다.
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
                 Lotto.LOTTO_MIN_NUMBER,
                 Lotto.LOTTO_MAX_NUMBER,
                 Lotto.LOTTO_NUMBER_SIZE
         );
+
+        List<Integer> numbers = new ArrayList<>(randomNumbers);
 
         Collections.sort(numbers);
 
